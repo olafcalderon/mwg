@@ -1,0 +1,23 @@
+
+---Downloaded files---
+The import files for: Amsterdam were successfully downloaded!
+Initial max execution time = 30
+Files info:
+Site URL = https://ogol.net/mwg
+Data file = /home1/olafc/public_html/mwg/wp-content/uploads/2020/07/demo-content-import-file_2020-07-07__04-56-20.xml
+Widget file = /home1/olafc/public_html/mwg/wp-content/uploads/2020/07/demo-widgets-import-file_2020-07-07__04-56-20.json
+Customizer file = /home1/olafc/public_html/mwg/wp-content/uploads/2020/07/demo-customizer-import-file_2020-07-07__04-56-20.dat
+Redux files:
+not defined!
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+

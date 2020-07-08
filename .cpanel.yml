@@ -2,5 +2,4 @@
 deployment:
   tasks:
    - export DEPLOYPATH=/home1/olafc/public_html/mwg/
-   - /bin/cp TEST.txt $DEPLOYPATH
-   # - /bin/cp -R * $DEPLOYPATH
+   - /bin/cp -R * $DEPLOYPATH

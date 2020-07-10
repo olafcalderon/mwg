@@ -1,0 +1,72 @@
+
+---Downloaded files---
+The import files for: Amsterdam were successfully downloaded!
+Initial max execution time = 1200
+Files info:
+Site URL = http://mwg.local
+Data file = /Users/ekkis/Local Sites/mwg/app/public/wp-content/uploads/2020/07/demo-content-import-file_2020-07-10__21-05-39.xml
+Widget file = /Users/ekkis/Local Sites/mwg/app/public/wp-content/uploads/2020/07/demo-widgets-import-file_2020-07-10__21-05-39.json
+Customizer file = /Users/ekkis/Local Sites/mwg/app/public/wp-content/uploads/2020/07/demo-customizer-import-file_2020-07-10__21-05-39.dat
+Redux files:
+not defined!
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+---Importing widgets---
+Shop Sidebar : 
+
+Rey Filter - by Category - No Title - Imported
+Rey Filter - by Attribute - BRANDS - Imported
+Rey Filter - by Attribute - COLORS - Imported
+Rey Filter - by Attribute - GENDER - Imported
+Rey Filter - by Attribute - SIZE - Imported
+Rey Filter - by Attribute - SHOE SIZES - Imported
+Rey Filter - by Price - FILTER PRICE - Imported
+Rey - Active Filters - No Title - Imported
+
+
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---Importing Theme Config---
+The config file was successfully parsed!
+
+---Importing Theme Config---
+The processes: rey-theme, options, pages, remove_pages, nav, upload-path, source-path, woocommerce-attributes were added.
+
+---pt-ocdi/after_import---
+
+
+---End---
+Time elapsed to import - 00:03:40 .

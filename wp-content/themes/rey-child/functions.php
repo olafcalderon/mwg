@@ -22,23 +22,3 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'rey-wp-style', get_template_directory_uri() . '/style.css', false, wp_get_theme()->parent()->get('Version') );
 	wp_enqueue_style( 'rey-wp-style-child', get_stylesheet_uri() );
 } );
-
-add_filter( 'woocommerce_before_add_to_cart_quantity' , 'cust_order_or_provide' );
-
-// Our hooked in function - $fields is passed via the filter!
-function cust_order_or_provide( $fields ) {
-	print_r($fields);
-	return $fields;
-
-/*
-	$fields['shipping']['shipping_phone'] = array(
-		'label' => __('Phone', 'woocommerce'),
-		'placeholder' => _x('Phone', 'placeholder', 'woocommerce'),
-		'required' => false,
-		'class' => array('form-row-wide'),
-		'clear' => true
-	);
-
-	return $fields;
-*/
-}

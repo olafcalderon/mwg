@@ -817,11 +817,10 @@
 					// enter, spacebar
 					if ([13, 32].indexOf(e.keyCode) !== -1) {
 
-						e.preventDefault();
-
 						var $popupItemsLinks = $('.menu-item[aria-haspopup="true"] > a:focus', self.$mainMenu).parent('li');
 
 						if ($popupItemsLinks.length) {
+							e.preventDefault();
 							$popupItemsLinks.each(function (i, el) {
 								$(el).attr('aria-expanded', 'true').trigger('mouseenter');
 								$('.rey-mega-gs a, > .sub-menu > li > a', el).removeAttr('tabindex');

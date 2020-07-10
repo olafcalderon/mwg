@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if( defined('WCCF_VERSION') && !class_exists('ReyCore_Compatibility__WCCustomFields') ):
+if( class_exists('WooCommerce') && defined('WCCF_VERSION') && !class_exists('ReyCore_Compatibility__WCCustomFields') ):
 
 	class ReyCore_Compatibility__WCCustomFields
 	{

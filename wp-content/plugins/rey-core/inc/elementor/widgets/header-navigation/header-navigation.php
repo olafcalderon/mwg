@@ -913,7 +913,10 @@ class ReyCore_Widget_Header_Navigation extends \Elementor\Widget_Base {
 	}
 
 	function set_mega_menu_support( $args ){
+
 		$args['element_type'] = $this->get_name();
+		$args['walker'] = new ReyCore_Walker_Nav_Menu;
+
 		return $args;
 	}
 

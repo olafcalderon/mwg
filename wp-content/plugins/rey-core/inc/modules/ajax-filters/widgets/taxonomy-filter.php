@@ -159,8 +159,8 @@ if (!class_exists('REYAJAXFILTERS_Taxonomy_Filter_Widget')) {
 
 		public function get_taxonomies(){
 
-			if( isset($GLOBALS['reyAjaxFilters']) && ($aj = $GLOBALS['reyAjaxFilters']) ){
-				return $aj->get_registered_taxonomies();
+			if( class_exists('reyAjaxFilters') ){
+				return reyAjaxFilters()->get_registered_taxonomies();
 			}
 
 			return [];

@@ -149,8 +149,6 @@ if(!class_exists('ReyCore_WooCommerce_Search')):
 					] )
 			);
 
-error_log(var_export( $args,1));
-
 			if ( 'product' === $args['post_type'] && 'yes' == get_option( 'woocommerce_hide_out_of_stock_items' ) ) {
 				$args['meta_query'][] = [
 					'key'     => '_stock_status',

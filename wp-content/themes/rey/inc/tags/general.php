@@ -346,34 +346,6 @@ add_filter( 'excerpt_length', function( $length ) {
 }, 999 );
 
 
-
-
-/**
- * Load Polyfills
- *
- * @since 1.0.0
- */
-add_action('wp_enqueue_scripts', function() {
-
-	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-	$load_polyfills = get_option( 'rey_load_polyfills', 'request' );
-
-	if( $load_polyfills != 'never' ) {
-		wp_enqueue_script( 'rey-polyfills', REY_THEME_URI . '/assets/js/lib/polyfills' . $suffix . '.js', [], REY_THEME_VERSION, false );
-		wp_localize_script('rey-polyfills', 'reyPolyfills', [
-			'url' => REY_THEME_URI,
-			'css_vars' => [
-				'iecp' => "/assets/js/lib/polyfill/ie11CustomProperties.js",
-				'cvpn' => "/assets/js/lib/polyfill/css-vars-ponyfill.js",
-			],
-			'css_vars_use' => 'cvpn',
-			'method' => esc_html($load_polyfills)
-		]);
-	}
-
-});
-
 /**
  * NO JS handling.
  *

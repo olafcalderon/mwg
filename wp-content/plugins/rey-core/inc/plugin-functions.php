@@ -218,7 +218,7 @@ if(!function_exists('reycore__get_all_menus')):
 	 */
 	function reycore__get_all_menus( $clean = true ){
 
-			$terms = get_terms( 'nav_menu', ['update_term_meta_cache'	=> false] );
+		$terms = get_terms( 'nav_menu', ['update_term_meta_cache'	=> false] );
 
 		if( $clean ){
 

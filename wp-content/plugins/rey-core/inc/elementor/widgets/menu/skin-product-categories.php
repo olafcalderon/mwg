@@ -266,6 +266,11 @@ if( !class_exists('ReyCore_Widget_Menu__Product_Categories') ):
 			}
 
 			foreach ($cats as $i => $cat) {
+
+				if( is_wp_error($i) ){
+					continue;
+				}
+
 				printf(
 					'<li class="menu-item %3$s"><a href="%2$s"><span>%1$s</span></a></li>',
 					$cat,

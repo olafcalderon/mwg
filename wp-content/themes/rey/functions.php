@@ -20,7 +20,7 @@ define('REY_THEME_PLACEHOLDER', REY_THEME_URI . '/assets/images/placeholder.png'
 define('REY_THEME_NAME', 'rey');
 define('REY_THEME_CORE_SLUG', 'rey-core');
 if( !defined('REY_DEV_MODE') ){
-	define( 'REY_THEME_VERSION', '1.6.10' );
+	define( 'REY_THEME_VERSION', '1.6.11' );
 }
 else {
 	// cache buster

@@ -1,0 +1,84 @@
+[
+    {
+        "key": "group_5f058db5d6559",
+        "title": "Global Section Visibility",
+        "fields": [
+            {
+                "key": "field_5f058df1520b4",
+                "label": "Start Date",
+                "name": "start_date",
+                "type": "date_time_picker",
+                "instructions": "Automatically show this global section when this date has started.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "d\/m\/Y g:i a",
+                "return_format": "d\/m\/Y g:i a",
+                "first_day": 1
+            },
+            {
+                "key": "field_5f058e27520b5",
+                "label": "End Date",
+                "name": "end_date",
+                "type": "date_time_picker",
+                "instructions": "Automatically hide this global section after this date.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "d\/m\/Y g:i a",
+                "return_format": "d\/m\/Y g:i a",
+                "first_day": 1
+            },
+            {
+                "key": "field_5f058ec8e3781",
+                "label": "Show per login status",
+                "name": "show_per_login_status",
+                "type": "select",
+                "instructions": "Select if you want to show this section to a specific group of users",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "logged": "Only Logged-in users",
+                    "logged_out": "Logged-out (guest)"
+                },
+                "default_value": [],
+                "allow_null": 1,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "rey-global-sections"
+                }
+            ]
+        ],
+        "menu_order": 10,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    }
+]

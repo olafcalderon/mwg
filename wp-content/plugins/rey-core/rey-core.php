@@ -3,7 +3,7 @@
  * Plugin Name: Rey Core
  * Description: Core plugin for Rey.
  * Plugin URI: http://www.reytheme.com/
- * Version: 1.6.10
+ * Version: 1.6.11
  * Author: ReyTheme
  * Author URI:  https://twitter.com/mariushoria
  * Text Domain: rey-core
@@ -50,7 +50,7 @@ class ReyCore
 		$this->define( 'REY_CORE_THEME_MIN_VERSION', '1.6.0' );
 
 		if( !defined('REY_DEV_MODE') ){
-			$this->define( 'REY_CORE_VERSION', '1.6.10' );
+			$this->define( 'REY_CORE_VERSION', '1.6.11' );
 		}
 		else {
 			// cache buster

@@ -20,21 +20,25 @@ if(!class_exists('ReyCore_MegaMenus')):
 		 */
 		private function __construct()
 		{
-			add_filter('acf/load_field_group', [$this, 'add_locations']);
-			add_filter('acf/prepare_field/name=menu_global_section', [$this, 'add_global_sections_into_lists']);
-			// add_action('wp_nav_menu_item_custom_fields', [$this, 'add_notice']);
-			add_action('admin_footer', [$this, 'add_options']);
-			add_action('wp_update_nav_menu', [$this, 'save_mm_option']);
-			add_filter( 'walker_nav_menu_start_el', [$this, 'mega_menu'], 10, 4 );
-			add_filter('nav_menu_css_class', [$this, 'mega_menu_item_classes'], 20, 4);
-			add_filter('wp_nav_menu_args', [$this, 'set_mega_menu_support']);
-			add_filter('rey/css_styles', [$this, 'main_menu_submenus_styles'] );
-			add_filter('nav_menu_link_attributes', [$this, 'mega_menu_link_args'], 10, 4);
+			add_filter( 'acf/load_field_group', [$this, 'add_locations']);
+			add_filter( 'acf/prepare_field/name=menu_global_section', [$this, 'add_global_sections_into_lists']);
+			// add_action( 'wp_nav_menu_item_custom_fields', [$this, 'add_notice']);
+			add_action( 'admin_footer', [$this, 'add_options']);
+			add_action( 'wp_update_nav_menu', [$this, 'save_mm_option']);
+			add_filter( 'walker_nav_menu_start_el', [$this, 'render_mega_menu'], 10, 4 );
+			add_filter( 'nav_menu_css_class', [$this, 'mega_menu_item_classes'], 20, 4);
+			add_filter( 'wp_nav_menu_args', [$this, 'set_mega_menu_support']);
+			add_filter( 'rey/css_styles', [$this, 'main_menu_submenus_styles'] );
+			add_filter( 'nav_menu_link_attributes', [$this, 'mega_menu_link_args'], 10, 4);
 		}
 
 		function add_locations($field_group){
 
 			if( reycore_acf__is_exporting() ){
+				return $field_group;
+			}
+
+			if( reycore_acf__is_editing_group() ){
 				return $field_group;
 			}
 
@@ -171,8 +175,13 @@ if(!class_exists('ReyCore_MegaMenus')):
 				return $args;
 			}
 
-			$term = get_term_by('slug', $args['menu'], 'nav_menu');
-			$term_id = isset($term->term_id) ? $term->term_id : $args['menu'];
+			if( is_object($args['menu']) && isset($args['menu']->term_id) ){
+				$term_id = isset($args['menu']->term_id);
+			}
+			else {
+				$term = get_term_by('slug', $args['menu'], 'nav_menu');
+				$term_id = isset($term->term_id) ? $term->term_id : $args['menu'];
+			}
 
 			$supported_menus = get_option(self::SUPPORTED_MENUS, []);
 
@@ -192,20 +201,29 @@ if(!class_exists('ReyCore_MegaMenus')):
 		 *
 		 * @since: 1.0.0
 		 */
-		public function mega_menu( $item_output, $item, $depth, $args) {
+		public function render_mega_menu( $item_output, $item, $depth, $args) {
 
 			if( ! class_exists('ReyCore_GlobalSections') ){
 				return $item_output;
 			}
 
 			if(
-				$args->rey_mega_menu &&
+				isset($args->rey_mega_menu) && $args->rey_mega_menu &&
 				$depth == 0 &&
 				reycore__acf_get_field('mega_menu', $item->ID) && reycore__acf_get_field('mega_menu_type', $item->ID) == 'global_sections' &&
 				$gs_id = reycore__acf_get_field('menu_global_section', $item->ID)
 			) {
+
+				if( isset($GLOBALS['gs_mega_menu']) && $GLOBALS['gs_mega_menu'] === $gs_id ){
+					return $item_output;
+				}
+
+				$GLOBALS['gs_mega_menu'] = $gs_id;
+
 				// load section
 				$item_output .= sprintf( '<div class="rey-mega-gs">%s</div>', ReyCore_GlobalSections::do_section( $gs_id ) );
+
+				unset($GLOBALS['gs_mega_menu']);
 			}
 
 			return $item_output;
@@ -219,7 +237,7 @@ if(!class_exists('ReyCore_MegaMenus')):
 		function mega_menu_item_classes( $classes, $item, $args, $depth)
 		{
 
-			if( $args->rey_mega_menu && $depth === 0 ) {
+			if( isset($args->rey_mega_menu) && $args->rey_mega_menu && $depth === 0 ) {
 				if ( reycore__acf_get_field('mega_menu', $item->ID) ) {
 					$classes['type'] = '--is-mega';
 					if( reycore__acf_get_field('mega_menu_type', $item->ID) == 'columns' && reycore__acf_get_field('mega_menu_columns', $item->ID) ) {
@@ -297,7 +315,7 @@ if(!class_exists('ReyCore_MegaMenus')):
 		function mega_menu_link_args( $atts, $item, $args, $depth )
 		{
 			if(
-				$args->rey_mega_menu && $depth == 0 &&
+				isset($args->rey_mega_menu) && $args->rey_mega_menu && $depth == 0 &&
 				reycore__acf_get_field('mega_menu', $item->ID) &&
 				reycore__acf_get_field('panel_layout', $item->ID) == 'custom'
 			) {

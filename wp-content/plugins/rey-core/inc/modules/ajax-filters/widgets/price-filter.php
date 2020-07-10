@@ -67,7 +67,7 @@ if (!class_exists('REYAJAXFILTERS_Price_Filter_Widget')) {
 			$is_slider = $display_type === 'slider';
 			$html = '';
 
-			$prices = reyAjaxFilters()::get_prices_range();
+			$prices = class_exists('ReyAjaxFilters') ? ReyAjaxFilters::get_prices_range() : [];
 			$step = max( apply_filters( 'woocommerce_price_filter_widget_step', 10 ), 1 );
 
 			// to be sure that these values are number

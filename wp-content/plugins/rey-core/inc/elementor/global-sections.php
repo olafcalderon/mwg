@@ -331,7 +331,7 @@ if(!class_exists('ReyCore_GlobalSections')):
 			}
 
 			$types = $this->get_global_section_types();
-			$active = isset($_GET['rey_gs_type']) ? wc_clean($_GET['rey_gs_type']) : '';
+			$active = isset($_GET['rey_gs_type']) ? reycore__clean($_GET['rey_gs_type']) : '';
 
 			printf('<select name="%s">', 'rey_gs_type');
 			printf('<option value="">%s</option>', esc_html__('Select Type', 'rey-core'));
@@ -349,7 +349,7 @@ if(!class_exists('ReyCore_GlobalSections')):
 				return $query;
 			}
 
-			if( ! (isset($_GET['rey_gs_type']) && $active_type = wc_clean($_GET['rey_gs_type'])) ){
+			if( ! (isset($_GET['rey_gs_type']) && $active_type = reycore__clean($_GET['rey_gs_type'])) ){
 				return $query;
 			}
 
@@ -440,13 +440,11 @@ if(!class_exists('ReyCore_GlobalSections')):
 				return;
 			}
 
-			$post_id = absint($post_id);
+			$post_id = absint( apply_filters('reycore/elementor/gs_id', $post_id, self::POST_TYPE) );
 
 			if( !$post_id ){
 				return;
 			}
-
-			$post_id = apply_filters('reycore/elementor/gs_id', $post_id, self::POST_TYPE);
 
 			$post_status = get_post_status( $post_id );
 
@@ -464,7 +462,7 @@ if(!class_exists('ReyCore_GlobalSections')):
 					$edit_markup_end = self::edit_markup_end();
 				}
 
-				return $edit_markup_start . Elementor\Plugin::instance()->frontend->get_builder_content_for_display( absint( $post_id ) ) . $edit_markup_end;
+				return $edit_markup_start . Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $post_id ) . $edit_markup_end;
 			}
 
 			return false;

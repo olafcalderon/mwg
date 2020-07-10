@@ -706,6 +706,7 @@ class ReyCore_Widget_Menu extends \Elementor\Widget_Base {
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
 				'depth' => $settings['menu_depth'],
+				'walker' => new ReyCore_Walker_Nav_Menu
 			]);
 			echo '</div>';
 		endif;

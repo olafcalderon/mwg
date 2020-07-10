@@ -21,7 +21,10 @@ class ReyCore_WooCommerce_ProductBadges
 
 	function add_badges(){
 
-		$product = wc_get_product();
+		if( ! ($product = wc_get_product()) ){
+			return;
+		}
+
 		$this->product_id = $product->get_id();
 
 		$this->get_badges();

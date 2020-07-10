@@ -55,7 +55,7 @@ if(!class_exists('ReyCore_Webfonts_Embed')):
 		private function __construct()
 		{
 			add_action( 'init', [ $this, 'init' ], 9 );
-			add_filter( 'rey/css_styles', [ $this, 'enqueue_css' ] );
+			add_filter( 'rey/css_styles', [ $this, 'enqueue_css' ], 100 );
 			// add_action( 'wp_enqueue_scripts', [ $this, 'adobe_fonts_embed_css' ] );
 			add_filter( 'wp_resource_hints', [ $this, 'resource_hints' ], 10, 2 );
 			add_action( 'acf/save_post', [ $this, 'clear_fonts_transient_on_save' ], 20);
@@ -158,8 +158,20 @@ if(!class_exists('ReyCore_Webfonts_Embed')):
 			if( $fonts = $this->get_google_fonts_list() ) {
 				foreach( $fonts as $font ){
 
+					if( ! $font['font_name'] ){
+						continue;
+					}
+
 					$font_name = str_replace(' ', '+', $font['font_name']);
-					$font_variants = implode(',', $font['font_variants']);
+
+					if( empty($font['font_variants']) ){
+						$variants = '400, 700';
+					}
+					else {
+						$variants = $font['font_variants'];
+					}
+
+					$font_variants = implode(',', $variants);
 					if( $font['font_subsets'] ) {
 						foreach($font['font_subsets'] as $subset) {
 							$font_subsets[] = $subset;

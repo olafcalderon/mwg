@@ -605,6 +605,19 @@ function reycore_acf__is_exporting()
 endif;
 
 
+if(!function_exists('reycore_acf__is_editing_group')):
+/**
+ * Check if editing group
+ *
+ * @since 1.6.10
+ **/
+function reycore_acf__is_editing_group()
+{
+	return get_post_type() === 'acf-field-group' && isset($_REQUEST['action']) && $_REQUEST['action'] === 'edit';
+}
+endif;
+
+
 if(!function_exists('reycore_acf__page_overrides_admin_menu')):
 	function reycore_acf__page_overrides_admin_menu( $nodes ) {
 
